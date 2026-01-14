@@ -1,0 +1,59 @@
+class Node<T> {
+	 T data;
+	 Node<T> next;   
+
+	 public Node(T data) {
+	     this.data = data; //adding entry
+	     this.next = null;
+	 
+	}
+	 }
+public class SinglyLinkedList<T> {
+	Node<T> head=null; //head is initially null
+	public void appendAtEnd(T data) { //inserts entry at the tail
+		Node<T> endData =new Node<>(data);
+		Node<T> current = head;
+		if(head==null) {head=endData;}
+		else { while(current.next != null) {
+			current= current.next;}
+		current.next=endData;}
+	}
+	public void appendAtHead(T data) { //inserts entry at the head
+		Node<T> headData =new Node<>(data);
+		headData.next=head;
+		head= headData;		
+	}
+	public void display() { //displays the list
+		Node<T> current = head;
+		while(current.next != null) {
+			System.out.print(current.data +" -> ");
+			current=current.next;
+		}System.out.println("null");
+	}
+	public static void main(String[] args) {
+		SinglyLinkedList<Integer> IntSLL=new SinglyLinkedList<Integer>();
+		IntSLL.appendAtEnd(1);
+		IntSLL.appendAtEnd(2);
+		IntSLL.appendAtEnd(3);
+		IntSLL.appendAtHead(4);
+		IntSLL.display();
+		IntSLL.appendAtHead(5);
+		IntSLL.display();
+		
+		SinglyLinkedList<String> StrSLL=new SinglyLinkedList<>();
+        StrSLL.appendAtHead("Apple");
+        StrSLL.appendAtEnd("Banana");
+        StrSLL.appendAtEnd("Cherry");
+        StrSLL.display();      
+        StrSLL.appendAtHead("Pineapple");
+        StrSLL.appendAtEnd("Grape");
+        StrSLL.display(); 
+
+ 
+        //The Big-O notation time complexity of appendAtHead function is O(1) because it is independent on size of SLL.
+        //The Big-O notation time complexity of appendAtEnd function is O(n) because we should find the tail to add the end and tail is not given. We should traverse SLL to find tail.
+        //The Big-O notation time complexity of display function is O(n) because we should traverse all elements in SLL to print them on the console.
+
+	}
+
+}
